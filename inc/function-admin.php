@@ -38,8 +38,13 @@ function storyscience_add_admin_page() {
 		    'storyscience_settings_page' /*function*/
 		    );
 	
+	// Activate custom settings
+	add_action( 'admin_init', 'storyscience_custom_settings');
 }
 
+function storyscience_custom_settings () {
+	register_setting( 'storyscience-settings-group', 'first_name');
+}
 
 add_action('admin_menu','storyscience_add_admin_page');
 
