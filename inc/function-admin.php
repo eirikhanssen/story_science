@@ -39,11 +39,16 @@ function storyscience_add_admin_page() {
 		    );
 	
 	// Activate custom settings
-	add_action( 'admin_init', 'storyscience_custom_settings');
+	add_action( 'admin_init', 'storyscience_custom_settings', 'sunset_sidebar_options');
 }
 
 function storyscience_custom_settings () {
 	register_setting( 'storyscience-settings-group', 'first_name');
+	add_settings_section( 'storyscience-sidebar-options', 'Sidebar Options', 'storyscience_sidebar_options', 'storyscience_settings');
+}
+
+function storyscience_sidebar_options() {
+	echo 'Customize your Sidebar Information';
 }
 
 add_action('admin_menu','storyscience_add_admin_page');
