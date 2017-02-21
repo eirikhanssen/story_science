@@ -44,8 +44,11 @@ function storyscience_add_admin_page() {
 
 function storyscience_custom_settings () {
 	register_setting( 'storyscience-settings-group', 'first_name');
+	register_setting( 'storyscience-settings-group', 'last_name');
+
 	add_settings_section( 'storyscience-sidebar-options', 'Sidebar Options', 'storyscience_sidebar_options', 'storyscience_settings');
-	add_settings_field( 'sidebar-name', 'First Name', 'storyscience_sidebar_name', 'storyscience_settings', 'storyscience-sidebar-options');
+	
+	add_settings_field( 'sidebar-name', 'Full Name', 'storyscience_sidebar_name', 'storyscience_settings', 'storyscience-sidebar-options');
 }
 
 function storyscience_sidebar_options() {
@@ -54,7 +57,10 @@ function storyscience_sidebar_options() {
 
 function storyscience_sidebar_name() {
 	$firstName = esc_attr( get_option( 'first_name' ) );
-	echo '<input type="text" name="first_name" value="' . $firstName . '" placeholder="First Name" ∕>';
+	$lastName = esc_attr( get_option( 'last_name' ) );
+	$output = '<input type="text" name="first_name" value="' . $firstName . '" placeholder="First Name" ∕>';
+	$output .= '<input type="text" name="last_name" value="' . $lastName . '" placeholder="Last Name" ∕>';
+	echo $output;
 }
 
 add_action('admin_menu','storyscience_add_admin_page');
